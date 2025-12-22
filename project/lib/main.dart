@@ -1,57 +1,83 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:path/path.dart' as path;
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+    const MyApp();
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Тестовое приложение', 
-      home: const MyHomePage(),
-    );
-  }
+    @override
+    Widget build(BuildContext context) {
+        return MaterialApp(
+            home: CounterPage(),
+        );
+    }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
+// Экран 
+class CounterPage extends StatelessWidget {
+    @override
+    Widget build(BuildContext context) {
+        return Scaffold(
+            appBar: AppBar(
+                title: Text('Текст на AppBar'),
+            ),
+            body: Center(
+                child: CounterWidget(),
+            ),
+            floatingActionButton: null,
+        );
+    }
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-   
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp( 
-      home: Scaffold(
-        body: Center(
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                    height: 400,
-                    child: Image.asset('assets/images/image.jpeg'),
-                ),
-                SizedBox(height: 20),
-                Text(
-                    'Это, кстати, правда )',
-                    style: TextStyle(
-                        fontSize: 25,
-                        fontFamily: "PenguinAttack",
-                        fontWeight: FontWeight.bold,
-                    ),
-                ),
-              ],
-          ),
-        ),
-      ),
-    );
-  }
+// Виджет с текстом
+class TextWidget extends StatelessWidget {
+    final String text;
+
+    const TextWidget({required this.text});
+
+    @override
+    Widget build(BuildContext context) {
+        return Text(
+            text,
+            style: TextStyle(fontSize: 20),
+        );
+    }
+}
+
+// Виджет со счётчиком
+class CounterWidget extends StatefulWidget {
+    @override
+    _CounterWidgetState createState() => _CounterWidgetState();
+}
+
+class _CounterWidgetState extends State<CounterWidget> {
+    int _counter = 0;
+
+    @override
+    Widget build(BuildContext context) {
+        return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextWidget(text: "Статичный текст"),
+              SizedBox(height: 20),
+              Text(
+                  'Счётчик в Stateful: $_counter',
+                  style: TextStyle(fontSize: 32),
+              ),
+              SizedBox(height: 20),
+              FloatingActionButton(
+                  onPressed: () {
+                      setState(
+                        () {
+                          _counter++;
+                          print("Кнопка нажата");
+                        }
+                        
+                      );
+                  },
+                  child: Icon(Icons.add),
+              ),
+            ],
+        );
+    }
 }
