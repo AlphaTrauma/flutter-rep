@@ -31,18 +31,11 @@ dependencies:
   flutter:
     sdk: flutter
   
-  # Пакет для выполнения http-запросов. Позволяет выполнять сетевые запросы основными методами (get, post, patch, put, delete и head),
-  # создавать объекты Client для поддержания соединения в случаях, когда нужно выполнить много запросов к одному источнику,
-  # и расширять запросы через создание кастомных экземпляров Request с дополнительной валидацией, заголовками т.д.
-  http: ^1.6.0
-  
-  # Пакет для обработки путей проекта. Позволяет работать с путями верхнеуровнево, независимо от платформы,
-  # присваивая путям характерные разделители, нормализуя, объединяя и т.д. Является зависимостью для многих других пакетов.
-  path: ^1.9.0
+  dio: ^5.9.0
+  retrofit: ^4.9.2
+  json_annotation: ^4.9.0
 
-  # Пакет для работы с JSON. Позволяет генерировать код для сериализации-десериализации, маппинга значений т.д.
-  # кстати, разве его не нужно в dev_dependencies, а сюда json_annotation?
-  json_serializable: ^6.11.0
+  freezed_annotation: ^3.1.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -53,6 +46,11 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  build_runner: ^2.10.5
+  retrofit_generator: ^10.2.1
+  freezed: ^3.2.4
+  json_serializable: ^6.11.4
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
